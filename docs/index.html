@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>外貿サーバー専用接続サービス</title>
+  <meta
+    name="description"
+    content="外貿サーバー、業務システム、運用保守環境向けの安全・安定・管理可能な専用接続サービス。"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      background: #f5f9ff;
+      color: #1d2a3a;
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0b56c3 0%, #1574e6 55%, #56a6ff 100%);
+      color: #ffffff;
+      padding: 72px 0 64px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      line-height: 1.25;
+      margin: 0 0 16px;
+    }
+
+    .hero p {
+      margin: 0 0 24px;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.94);
+      max-width: 680px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #0b56c3;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 14px 36px rgba(4, 35, 91, 0.18);
+    }
+
+    .hero-card-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0 0 16px;
+    }
+
+    .hero-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-list li {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 15px;
+    }
+
+    .section {
+      padding: 64px 0;
+    }
+
+    .section-title {
+      font-size: 34px;
+      line-height: 1.3;
+      margin: 0 0 14px;
+      text-align: center;
+      color: #103b79;
+    }
+
+    .section-desc {
+      max-width: 760px;
+      margin: 0 auto 36px;
+      text-align: center;
+      color: #54657c;
+      font-size: 16px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e6eef9;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(18, 61, 122, 0.06);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #0b56c3;
+    }
+
+    .card p {
+      margin: 0;
+      color: #5a6b80;
+      font-size: 15px;
+    }
+
+    .panel {
+      background: #ffffff;
+      border: 1px solid #e7eef9;
+      border-radius: 24px;
+      padding: 34px;
+      box-shadow: 0 12px 36px rgba(14, 53, 112, 0.06);
+    }
+
+    .panel h2 {
+      margin: 0 0 16px;
+      font-size: 28px;
+      color: #103b79;
+    }
+
+    .panel p {
+      margin: 0 0 14px;
+      color: #54657c;
+    }
+
+    .usage-list,
+    .policy-list,
+    .feature-list {
+      margin: 0;
+      padding-left: 20px;
+      color: #54657c;
+    }
+
+    .usage-list li,
+    .policy-list li,
+    .feature-list li {
+      margin-bottom: 10px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .feature-box {
+      background: #f8fbff;
+      border: 1px solid #dfeafa;
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .feature-box h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      color: #0b56c3;
+    }
+
+    .notice {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+    }
+
+    .notice h2 {
+      color: #b45309;
+    }
+
+    .notice p,
+    .notice li {
+      color: #7c4a11;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #0b56c3 0%, #0c67db 100%);
+      color: #ffffff;
+      border-radius: 28px;
+      padding: 42px 28px;
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(10, 74, 166, 0.2);
+    }
+
+    .cta h2 {
+      margin: 0 0 12px;
+      font-size: 32px;
+    }
+
+    .cta p {
+      margin: 0 0 24px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 16px;
+    }
+
+    .cta .btn-primary {
+      padding: 14px 28px;
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      text-align: center;
+      color: #6b7c92;
+      font-size: 14px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-inner,
+      .cards,
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 56px 0 48px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .cards,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        padding: 24px;
+      }
+
+      .cta h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="hero-badge">安全・安定・管理可能な専用接続サービス</div>
+        <h1>外貿サーバー専用接続サービス</h1>
+        <p>
+          外貿サーバー、業務システム、管理画面、API連携、運用保守環境向けに、
+          安全かつ安定した専用接続環境をご提供します。
+        </p>
+
+        <div class="hero-tags">
+          <span class="tag">お客様ごとの個別設定</span>
+          <span class="tag">業務用途限定アクセス</span>
+          <span class="tag">共有・転売防止</span>
+          <span class="tag">接続ログ管理対応</span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">お問い合わせ</a>
+          <a class="btn btn-secondary" href="#service">サービス内容を見る</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <p class="hero-card-title">主な対応内容</p>
+        <ul class="hero-list">
+          <li>外貿サーバーの安全なリモート接続</li>
+          <li>管理画面・業務システムへの専用アクセス</li>
+          <li>API接続およびシステム連携</li>
+          <li>リモート運用保守・障害対応支援</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="service">
+    <div class="container">
+      <h2 class="section-title">サービスの特長</h2>
+      <p class="section-desc">
+        不特定多数向けの公開VPNではなく、業務利用を前提とした専用接続環境として提供します。
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>個別アカウント発行</h3>
+          <p>
+            お客様ごとに接続情報を個別発行し、利用状況を管理します。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>接続範囲を制御</h3>
+          <p>
+            指定された業務サーバーや管理画面、APIのみアクセス可能です。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>安定した接続</h3>
+          <p>
+            業務用途に適した安定した接続環境を構築し、継続運用を支援します。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>不正利用対策</h3>
+          <p>
+            共有、転貸、転売などの不正利用を防ぐための運用制限を設けています。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="panel">
+        <h2>サービス概要</h2>
+        <p>
+          当サービスは、外貿サーバー、業務管理画面、各種API、リモート運用保守環境へ
+          安全に接続するための専用アクセスサービスです。
+        </p>
+        <p>
+          お客様ごとに個別の接続設定と利用権限を割り当て、
+          許可された業務リソースのみにアクセスできるよう制御します。
+          安全性を確保しながら、業務に必要な接続環境を安定してご提供します。
+        </p>
+        <p>
+          本サービスは、一般向けの公開VPNや公共代理サービスではなく、
+          あくまで業務利用専用の接続手段として提供しています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="feature-box">
+          <h3>主な利用用途</h3>
+          <ul class="usage-list">
+            <li>外貿サーバーの管理</li>
+            <li>業務システム・管理画面へのアクセス</li>
+            <li>API接続およびシステム連携</li>
+            <li>リモート運用保守・メンテナンス対応</li>
+          </ul>
+        </div>
+
+        <div class="feature-box">
+          <h3>主な管理項目</h3>
+          <ul class="feature-list">
+            <li>お客様単位での個別接続設定</li>
+            <li>利用端末・接続範囲の制御</li>
+            <li>アクセスログ・監査管理</li>
+            <li>異常接続時の停止対応</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="panel notice">
+        <h2>重要事項</h2>
+        <p>
+          本サービスは「業務アクセス専用接続」であり、
+          一般向けの公開VPNサービスや公共代理用途には対応しておりません。
+        </p>
+        <ul class="policy-list">
+          <li>ご契約者本人または社内の許可済み担当者のみ利用可能です。</li>
+          <li>共有、貸与、転売、再配布は禁止しています。</li>
+          <li>異常接続、不正利用、利用条件違反が確認された場合は接続停止となる場合があります。</li>
+          <li>許可されていない用途での利用はお断りしております。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta" id="contact">
+        <h2>安全・安定した業務接続環境をご提供します</h2>
+        <p>
+          外貿サーバーへの専用接続、アクセス制御、運用管理までまとめて対応します。
+        </p>
+        <a class="btn btn-primary" href="mailto:nobira132@outlook.com">お問い合わせはこちら</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 NovaBrige. All Rights Reserved.
+    </div>
+  </footer>
+</body>
+</html>
